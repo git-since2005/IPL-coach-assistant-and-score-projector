@@ -119,3 +119,8 @@ elif selection == 'Score Prediction':
         # proj1 = sum(sv.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
         st.success(f"By linear regression: {int(proj)}")
         # st.success(f"By support vector classifier: {int(proj1)}")
+        that = pd.DataFrame()
+        that['X'], that['Y'] = [i for i in range(1, 21)], list(runs_per_over)+[int(i) for i in list(proj)]
+        st.bar_chart(that, x = 'X', y = 'Y')
+        st.line_chart(that, x='X', y='Y')
+        st.dataframe(that)
