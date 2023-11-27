@@ -120,7 +120,7 @@ elif selection == 'Score Prediction':
         st.success(f"By linear regression: {int(proj)}")
         # st.success(f"By support vector classifier: {int(proj1)}")
         that = pd.DataFrame()
-        that['X'], that['Y'] = [i for i in range(1, 21)], list(runs_per_over)+[int(i) for i in list(proj)]
-        st.bar_chart(that, x = 'X', y = 'Y')
-        st.line_chart(that, x='X', y='Y')
-        st.dataframe(that)
+        # that['X'], that['Y'] = [i for i in range(1, 21)], list(runs_per_over)+[int(i) for i in list(proj)]
+        # st.bar_chart(that, x = 'X', y = 'Y')
+        # st.line_chart(that, x='X', y='Y')
+        # st.dataframe(that)
