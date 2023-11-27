@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.svm import SVC
+# from sklearn.svm import SVC
 
 batsmans = pd.read_csv("batsman.csv").iloc[:, 1:]
 bowlers = pd.read_csv("bowlers.csv").iloc[:, 1:]
@@ -112,10 +112,10 @@ elif selection == 'Score Prediction':
         x_train, y_train, x_test, y_test = train_test_split(df['overs'], df['runs'], random_state=42, test_size=0.3)
         X,y = df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1)
         lr = LinearRegression()
-        sv = SVC(random_state=42, kernel='linear')
-        sv.fit(X, y=y)
+        # sv = SVC(random_state=42, kernel='linear')
+        # sv.fit(X, y=y)
         lr.fit(df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1))
         proj = sum(lr.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
-        proj1 = sum(sv.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
+        # proj1 = sum(sv.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
         st.success(f"By linear regression: {int(proj)}")
-        st.success(f"By support vector classifier: {int(proj1)}")
+        # st.success(f"By support vector classifier: {int(proj1)}")
