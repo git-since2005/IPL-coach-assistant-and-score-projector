@@ -97,7 +97,7 @@ elif selection == 'Score Prediction':
     st.header("Score Predictor")
     st.subheader("Team must have completed 8 overs to predict the score:")
     over = st.checkbox("Played 8 Overs", value = True)
-    st.warning("Caution! \n You have to select runs made in 8 overs one by one. If ten instances are not selected it will throw an error")
+    st.warning("Caution! \n You have to select runs made in 8 overs one by one. If eight instances are not selected it will throw an error")
     st.success("Type in numbers 8 times for 8 overs.")
     options = []
     for i in range(37):
