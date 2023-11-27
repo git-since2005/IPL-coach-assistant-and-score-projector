@@ -117,7 +117,7 @@ elif selection == 'Score Prediction':
         lr.fit(df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1))
         proj = sum(lr.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
         # proj1 = sum(sv.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
-        st.success(f"By linear regression: {int(proj)}")
+        st.success(f"By linear regression: {int(proj)} runs.")
         # st.success(f"By support vector classifier: {int(proj1)}")
         that = pd.DataFrame()
         # that['X'], that['Y'] = [i for i in range(1, 21)], list(runs_per_over)+[int(i) for i in list(proj)]
