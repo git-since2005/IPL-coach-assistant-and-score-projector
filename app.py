@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestClassifier
 # from sklearn.svm import SVC
 
 batsmans = pd.read_csv("batsman.csv").iloc[:, 1:]
@@ -109,10 +110,13 @@ elif selection == 'Score Prediction':
     if submit and len(runs_per_over)==8:
         df['overs'] = [i for i in range(1, 9)]
         df['runs'] = runs_per_over
-        x_train, y_train, x_test, y_test = train_test_split(df['overs'], df['runs'], random_state=42, test_size=0.3)
+        //x_train, y_train, x_test, y_test = train_test_split(df['overs'], df['runs'], random_state=42, test_size=0.3)
         X,y = df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1)
         lr = LinearRegression()
+        rfclf = RandomForestClassifier()
+        rfclf.fit(df.overs.values.reshape(-1, 1))
         lr.fit(df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1))
         proj = sum(lr.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
+        proj1 = sum(rfclf.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
         st.success(f"By linear regression: {int(proj)} runs.")
         that = pd.DataFrame()
