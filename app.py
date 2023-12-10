@@ -110,7 +110,7 @@ elif selection == 'Score Prediction':
     if submit and len(runs_per_over)==8:
         df['overs'] = [i for i in range(1, 9)]
         df['runs'] = runs_per_over
-        //x_train, y_train, x_test, y_test = train_test_split(df['overs'], df['runs'], random_state=42, test_size=0.3)
+        #x_train, y_train, x_test, y_test = train_test_split(df['overs'], df['runs'], random_state=42, test_size=0.3)
         X,y = df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1)
         lr = LinearRegression()
         rfclf = RandomForestClassifier()
