@@ -119,5 +119,5 @@ elif selection == 'Score Prediction':
         proj = sum(lr.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
         proj1 = sum(rfclf.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
         st.success(f"By linear regression: {int(proj)} runs.")
-        st.success(f"By RandomForestClassifier: {int(proj)} runs.")
+        st.success(f"By RandomForestClassifier: {int(proj1)} runs.")
         that = pd.DataFrame()
