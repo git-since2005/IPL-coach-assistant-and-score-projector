@@ -114,7 +114,7 @@ elif selection == 'Score Prediction':
         X,y = df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1)
         lr = LinearRegression()
         rfclf = RandomForestClassifier()
-        rfclf.fit(df.overs.values.reshape(-1, 1))
+        rfclf.fit(df.overs.values.reshape(-1, 1),df.runs.values.reshape(-1, 1))
         lr.fit(df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1))
         proj = sum(lr.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
         proj1 = sum(rfclf.predict(pd.Series([i for i in range(9, 21)]).values.reshape(-1, 1)))+sum(runs_per_over)
