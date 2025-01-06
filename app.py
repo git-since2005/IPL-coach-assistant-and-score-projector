@@ -104,7 +104,7 @@ elif selection == 'Score Prediction':
     for i in range(37):
         for j in range(8):
             options.append(i)
-    runs_per_over = st.multiselect(label="Select runs", format_func=int, key = int, options=options, max_selections = 8)
+    runs_per_over = st.multiselect(label="Select runs", key = "Runs selector", options=options, max_selections = 8)
     df = pd.DataFrame()
     submit = st.button("Submit")
     if submit and len(runs_per_over)==8:
