@@ -4,7 +4,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestClassifier
-# from sklearn.svm import SVC
+from statsmodels.tsa.arima.model import ARIMA
+from sklearn.metrics import r2_score
 
 batsmans = pd.read_csv("batsman.csv").iloc[:, 1:]
 bowlers = pd.read_csv("bowlers.csv").iloc[:, 1:]
@@ -100,17 +101,17 @@ elif selection == 'Score Prediction':
     over = st.checkbox("Played 8 Overs", value = True)
     st.warning("Caution! \n You have to select runs made in 8 overs one by one. If eight instances are not selected it will throw an error")
     st.success("Type in numbers 8 times for 8 overs.")
-    options = []
-    for i in range(37):
-        for j in range(8):
-            options.append(i)
-    runs_per_over = st.multiselect(label="Select runs", key = "Runs selector", options=options, max_selections = 8)
+    options = [[j for j in range(1, 37)] for i in range(8)]
+    runs_per_over = []
+    for i in range(8):
+        run = st.number_input(f"Enter {i+1}th over runs", min_value=0, max_value=36)
+        runs_per_over.append(run)
     df = pd.DataFrame()
     submit = st.button("Submit")
     if submit and len(runs_per_over)==8:
         df['overs'] = [i for i in range(1, 9)]
         df['runs'] = runs_per_over
-        #x_train, y_train, x_test, y_test = train_test_split(df['overs'], df['runs'], random_state=42, test_size=0.3)
+        x_train, y_train, x_test, y_test = train_test_split(df['overs'], df['runs'], random_state=42, test_size=0.3)
         X,y = df.overs.values.reshape(-1, 1), df.runs.values.reshape(-1, 1)
         lr = LinearRegression()
         rfclf = RandomForestClassifier()
